@@ -33,3 +33,6 @@
 
 # Docs
 *.pdf
+
+# Build folder
+build/
