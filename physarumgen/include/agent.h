@@ -14,7 +14,7 @@ class c_agent
         void print_info() const;
         s_position query_move() const;
         void move();
-    private:
         s_position m_position;
         float m_angle;
+    private:
 };

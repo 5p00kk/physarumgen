@@ -32,3 +32,13 @@ bool c_world::spawn_agents(float world_percentage)
 
     return true;
 }
+
+void c_world::update_world()
+{
+    m_world_grid = cv::Scalar::all(0);
+    
+    for(auto &agent : m_agents) 
+    {
+        m_world_grid.at<uchar>(agent.m_position.x, agent.m_position.y, 1) = 255;
+    }
+}
