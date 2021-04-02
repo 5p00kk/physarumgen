@@ -4,6 +4,7 @@
 c_world::c_world(unsigned int height, unsigned int width)
 : m_height{height}
 , m_width{width}
+, m_world_grid{height, width, CV_8UC1}
 {}
 
 bool c_world::spawn_agents(float world_percentage)

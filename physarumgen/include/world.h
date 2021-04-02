@@ -2,6 +2,7 @@
 
 #include "agent.h"
 #include <vector>
+#include <opencv2/highgui.hpp>
 
 class c_world
 {
@@ -12,4 +13,5 @@ class c_world
         std::vector<c_agent> m_agents;
         unsigned int m_height;
         unsigned int m_width;
+        cv::Mat m_world_grid;
 };
