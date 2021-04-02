@@ -12,4 +12,4 @@ class c_world
         std::vector<c_agent> m_agents;
         unsigned int m_height;
         unsigned int m_width;
-}
+};
