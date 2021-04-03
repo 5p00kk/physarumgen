@@ -44,12 +44,11 @@ bool c_world::spawn_agents(float world_percentage)
 void c_world::move_agents()
 {
     /* Shuffle agent to avoid emergent patterns due to move sequence */
+    /* TODO - this is slow, potential optimization */
     std::random_shuffle(m_agents.begin(), m_agents.end());
 
     for(auto &agent : m_agents) 
     {
-        bool can_move = false;
-
         /* Calculate where the agents wants to go */
         float next_x = agent.m_pose.x + agent.m_step_size * std::cos(agent.m_pose.alpha*PI/180.0);
         float next_y = agent.m_pose.y + agent.m_step_size * std::sin(agent.m_pose.alpha*PI/180.0);
