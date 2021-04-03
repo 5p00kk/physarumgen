@@ -3,6 +3,7 @@ find_package(OpenCV REQUIRED)
 add_library(physarumgen_lib
     src/agent.cpp
     src/world.cpp
+    src/world_sampler.cpp
 )
 
 target_include_directories(physarumgen_lib PUBLIC
