@@ -38,6 +38,7 @@ s_position c_world_sampler::get_next_position()
         unsigned int position = m_positions[m_current_idx];
         ret_val.x = position%m_width;
         ret_val.y = position/m_width;
+        m_current_idx++;
     }
 
     return ret_val;
