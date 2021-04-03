@@ -1,7 +1,7 @@
 #include "agent.h"
 #include <iostream>
 
-c_agent::c_agent(unsigned int pos_x, unsigned int pos_y, float angle)
+c_agent::c_agent(unsigned int pos_x, unsigned int pos_y, unsigned int angle)
     : m_position{pos_x, pos_y}
     , m_angle{angle}
 {
