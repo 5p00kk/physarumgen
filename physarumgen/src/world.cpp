@@ -34,6 +34,8 @@ bool c_world::spawn_agents(float world_percentage)
 
     std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
 
+    update_world();
+
     return true;
 }
 
