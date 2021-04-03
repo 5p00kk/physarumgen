@@ -10,7 +10,12 @@ c_world::c_world(unsigned int width, unsigned int height)
 , m_world_grid{height, width, CV_8UC1}
 , m_trail_grid{height, width, CV_8UC1}
 , m_world_sampler{width, height}
-{}
+{
+    cv::namedWindow("world");
+    cv::moveWindow("world", 500,300);
+    cv::namedWindow("trail");
+    cv::moveWindow("trail", m_width + 500,300);
+}
 
 bool c_world::spawn_agents(float world_percentage)
 {
