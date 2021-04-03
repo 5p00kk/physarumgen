@@ -103,10 +103,6 @@ void c_world::move_agents()
             }
         }
     }    
-        }
-    }    
-}
-    }    
 }
 
 void c_world::update_world()
