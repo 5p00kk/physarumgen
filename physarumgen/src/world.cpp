@@ -1,9 +1,9 @@
 #include "world.h"
 #include <iostream>
 
-c_world::c_world(unsigned int height, unsigned int width)
-: m_height{height}
-, m_width{width}
+c_world::c_world(unsigned int width, unsigned int height)
+: m_width{width}
+, m_height{height}
 , m_world_grid{height, width, CV_8UC1}
 {}
 
