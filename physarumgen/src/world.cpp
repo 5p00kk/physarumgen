@@ -52,3 +52,9 @@ void c_world::update_world()
         m_world_grid.at<uchar>(agent.m_pose.y, agent.m_pose.x, 0) = 255;
     }
 }
+
+void c_world::display() const
+{
+    cv::imshow("world", m_world_grid);
+    cv::waitKey(100);
+}
