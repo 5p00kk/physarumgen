@@ -50,34 +50,50 @@ void c_world::move_agents()
     for(auto &agent : m_agents) 
     {
         /* Calculate where the agents wants to go */
-        float next_x = agent.m_pose.x + agent.m_step_size * std::cos(agent.m_pose.alpha*PI/180.0);
-        float next_y = agent.m_pose.y + agent.m_step_size * std::sin(agent.m_pose.alpha*PI/180.0);
+        float new_x = agent.m_pose.x + agent.m_step_size * std::cos(agent.m_pose.alpha*PI/180.0);
+        float new_y = agent.m_pose.y + agent.m_step_size * std::sin(agent.m_pose.alpha*PI/180.0);
 
-        /* Cast it into the grid */
-        /* TODO: paper says they jsut cast it maybe maybe do some interpolation here */
-        int grid_next_x = (int)next_x;
-        int grid_next_y = (int)next_y;
+        /* Get grid coordinates */
+        /* TODO: paper says they just cast rounding maybe maybe do some interpolation here */
+        int grid_old_x = std::round(agent.m_pose.x);
+        int grid_old_y = std::round(agent.m_pose.y);
+        int grid_new_x = std::round(new_x);
+        int grid_new_y = std::round(new_y);
+
+        if(grid_new_x == grid_old_x && grid_new_y == grid_old_y)
+        {
+            /* Agent does not move enough to occupy a new grid cell */
+            /* Only update agent state */
+            agent.m_pose.x = new_x;
+            agent.m_pose.y = new_y;
+        }
+        else
+        {
+            /* Agent wants to move to new grid cell */
 
         /* Check if out of bounds */
-        bool in_bounds = (grid_next_x >= 0) && (grid_next_x < m_width);
-        in_bounds &= (grid_next_y >= 0) && (grid_next_y < m_height);
+            bool in_bounds = (grid_new_x >= 0) && (grid_new_x < m_width);
+            in_bounds &= (grid_new_y >= 0) && (grid_new_y < m_height);
 
         /* Check if space is free */
-        bool space_free = (m_world_grid.at<uchar>(grid_next_y, grid_next_x, 0) == 0);
+            bool space_free = (m_world_grid.at<uchar>(grid_new_y, grid_new_x, 0) == 0);
 
         if(in_bounds && space_free)
         {
-            /* Move */
-            m_world_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = 0;
-            agent.m_pose.x = next_x;
-            agent.m_pose.y = next_y;
-            m_world_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = 255;
+                /* Move in grid cell */
+                m_world_grid.at<uchar>(grid_old_y, grid_old_x, 0) = 0;
+                m_world_grid.at<uchar>(grid_new_y, grid_new_x, 0) = 255;
+
+                /* Update agent state */
+                agent.m_pose.x = new_x;
+                agent.m_pose.y = new_y;
+
             /* Deposit trail in the new location */
             /* TODO: better saturation */
-            uchar trail_value = m_trail_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0);
+                uchar trail_value = m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0);
             if(trail_value <= (255 - agent.m_deposition_value))
             {
-                m_trail_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = trail_value + agent.m_deposition_value;
+                    m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0) = trail_value + agent.m_deposition_value;
             }
         }
         else
@@ -86,6 +102,7 @@ void c_world::move_agents()
             agent.m_pose.alpha = m_world_sampler.get_angle();
         }
     }    
+}
 }
 
 void c_world::update_world()
