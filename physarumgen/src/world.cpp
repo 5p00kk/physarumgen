@@ -35,7 +35,7 @@ bool c_world::spawn_agents(float world_percentage)
     m_agents.reserve(num_agents);
     for(int i=0; i<num_agents; i++)
     {
-        s_vec2 tmp_pos = m_world_sampler.get_next_position();
+        s_ui_vec2 tmp_pos = m_world_sampler.get_next_position();
         m_agents.emplace_back((float)tmp_pos.x, (float)tmp_pos.y, m_world_sampler.get_angle());
     }
 

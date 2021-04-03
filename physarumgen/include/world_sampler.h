@@ -9,7 +9,7 @@ class c_world_sampler
     public:
         c_world_sampler(unsigned int width, unsigned int height);
         void reset_range(unsigned int width, unsigned int height);
-        s_vec2 get_next_position();
+        s_ui_vec2 get_next_position();
         float get_angle();
     private:
         std::vector<unsigned int> m_positions;
