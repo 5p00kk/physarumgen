@@ -10,6 +10,7 @@ class c_world
     public:
         c_world(unsigned int width, unsigned int height);
         bool spawn_agents(float world_percentage);
+        void move_agents();
         void update_world();
     private:
         std::vector<c_agent> m_agents;

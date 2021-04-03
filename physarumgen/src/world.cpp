@@ -1,5 +1,6 @@
 #include "world.h"
 #include <iostream>
+#include <algorithm>
 
 c_world::c_world(unsigned int width, unsigned int height)
 : m_width{width}
@@ -34,6 +35,12 @@ bool c_world::spawn_agents(float world_percentage)
     std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
 
     return true;
+}
+
+void c_world::move_agents()
+{
+    /* Shuffle agent to avoid emergent patterns due to move sequence */
+    std::random_shuffle(m_agents.begin(), m_agents.end());
 }
 
 void c_world::update_world()
