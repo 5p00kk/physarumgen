@@ -5,9 +5,10 @@
 class c_agent
 {
     public:
-        c_agent(unsigned int pos_x, unsigned int pos_y, unsigned int angle);
+        c_agent(unsigned int pos_x, unsigned int pos_y, float alpha);
         void print_info() const;
         s_position m_position;
-        unsigned int m_angle;
+        float m_alpha;
+        float m_sensor_angle;
     private:
 };

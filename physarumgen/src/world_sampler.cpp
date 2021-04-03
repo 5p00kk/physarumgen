@@ -46,7 +46,7 @@ s_position c_world_sampler::get_next_position()
     return ret_val;
 }
 
-unsigned int c_world_sampler::get_angle()
+float c_world_sampler::get_angle()
 {
-    return m_dist360(m_rng);
+    return float(m_dist360(m_rng));
 }
