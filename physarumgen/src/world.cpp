@@ -130,6 +130,11 @@ void c_world::update_world()
     }
 }
 
+bool c_world::check_inbounds(unsigned int x, unsigned int y) const
+{
+    return((x >= 0) && (x < m_width) && (y >= 0) && (y < m_height));
+}
+
 void c_world::display(int delay) const
 {
     cv::imshow("world", m_world_grid);
