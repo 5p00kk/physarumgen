@@ -54,15 +54,16 @@ void c_world::move_agents()
         float next_y = agent.m_pose.y + agent.m_step_size * std::sin(agent.m_pose.alpha*PI/180.0);
 
         /* Cast it into the grid */
-        int i_next_x = (int)next_x;
-        int i_next_y = (int)next_y;
+        /* TODO: paper says they jsut cast it maybe maybe do some interpolation here */
+        int grid_next_x = (int)next_x;
+        int grid_next_y = (int)next_y;
 
         /* Check if out of bounds */
-        bool in_bounds = i_next_x >= 0 && i_next_x < m_width;
-        in_bounds &= i_next_y >= 0 && i_next_y < m_height;
+        bool in_bounds = (grid_next_x >= 0) && (grid_next_x < m_width);
+        in_bounds &= (grid_next_y >= 0) && (grid_next_y < m_height);
 
         /* Check if space is free */
-        bool space_free = (m_world_grid.at<uchar>(i_next_y, i_next_x, 0) == 0);
+        bool space_free = (m_world_grid.at<uchar>grid_next_y, grid_next_x, 0) == 0);
 
         if(in_bounds && space_free)
         {
