@@ -1,12 +1,6 @@
 #include "agent.h"
 #include <iostream>
 
-c_agent::c_agent()
-{
-    /* TODO set random values */
-    std::cout << "Created c_agent using random values" << std::endl;
-}
-
 c_agent::c_agent(unsigned int pos_x, unsigned int pos_y, float angle)
     : m_position{pos_x, pos_y}
     , m_angle{angle}
