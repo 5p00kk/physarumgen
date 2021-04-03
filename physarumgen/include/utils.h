@@ -1,6 +1,8 @@
 #pragma once
 
 #include <math.h>
+#include <cmath>
+#include <cstdlib>
 
 #define PI 3.14159265
 
@@ -21,3 +23,6 @@ inline unsigned int to_grid(float value)
 {
     return std::round(value);
 };
+
+bool random_bool();
+s_f_vec2 dest_position(float x, float y, float angle, float distance);
