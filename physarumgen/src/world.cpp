@@ -74,7 +74,8 @@ void c_world::move_agents()
             m_world_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = 255;
             /* Deposit trail in the new location */
             /* TODO: better saturation */
-            if(m_trail_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) <= (255 - agent.m_deposition_value))
+            uchar trail_value = m_trail_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0);
+            if(trail_value <= (255 - agent.m_deposition_value))
             {
                 m_trail_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = trail_value + agent.m_deposition_value;
             }
