@@ -71,15 +71,15 @@ void c_world::move_agents()
         {
             /* Agent wants to move to new grid cell */
 
-        /* Check if out of bounds */
+            /* Check if out of bounds */
             bool in_bounds = (grid_new_x >= 0) && (grid_new_x < m_width);
             in_bounds &= (grid_new_y >= 0) && (grid_new_y < m_height);
 
-        /* Check if space is free */
+            /* Check if space is free */
             bool space_free = (m_world_grid.at<uchar>(grid_new_y, grid_new_x, 0) == 0);
 
-        if(in_bounds && space_free)
-        {
+            if(in_bounds && space_free)
+            {
                 /* Move in grid cell */
                 m_world_grid.at<uchar>(grid_old_y, grid_old_x, 0) = 0;
                 m_world_grid.at<uchar>(grid_new_y, grid_new_x, 0) = 255;
@@ -88,21 +88,25 @@ void c_world::move_agents()
                 agent.m_pose.x = new_x;
                 agent.m_pose.y = new_y;
 
-            /* Deposit trail in the new location */
-            /* TODO: better saturation */
+                /* Deposit trail in the new location */
+                /* TODO: better saturation */
                 uchar trail_value = m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0);
-            if(trail_value <= (255 - agent.m_deposition_value))
-            {
+                if(trail_value <= (255 - agent.m_deposition_value))
+                {
                     m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0) = trail_value + agent.m_deposition_value;
+                }
+            }
+            else
+            {
+                /* Dont move but change angle */
+                agent.m_pose.alpha = m_world_sampler.get_angle();
             }
         }
-        else
-        {
-            /* Dont move but change angle */
-            agent.m_pose.alpha = m_world_sampler.get_angle();
+    }    
         }
     }    
 }
+    }    
 }
 
 void c_world::update_world()
