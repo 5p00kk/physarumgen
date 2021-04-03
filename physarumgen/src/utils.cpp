@@ -1,5 +1,8 @@
 #include "utils.h"
 
+#include <cstdlib>
+
+/* FROM: https://stackoverflow.com/a/44045388 */
 bool random_bool()
 {
    static const int shift = static_cast<int>(std::log2(RAND_MAX));

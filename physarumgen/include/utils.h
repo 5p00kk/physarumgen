@@ -1,8 +1,6 @@
 #pragma once
 
-#include <math.h>
 #include <cmath>
-#include <cstdlib>
 
 #define PI 3.14159265
 
