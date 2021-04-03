@@ -63,7 +63,7 @@ void c_world::move_agents()
         in_bounds &= (grid_next_y >= 0) && (grid_next_y < m_height);
 
         /* Check if space is free */
-        bool space_free = (m_world_grid.at<uchar>grid_next_y, grid_next_x, 0) == 0);
+        bool space_free = (m_world_grid.at<uchar>(grid_next_y, grid_next_x, 0) == 0);
 
         if(in_bounds && space_free)
         {
