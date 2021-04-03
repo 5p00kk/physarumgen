@@ -10,7 +10,8 @@ class c_world
     public:
         c_world(unsigned int width, unsigned int height);
         bool spawn_agents(float world_percentage);
-        void move_agents();
+        void movement_step();
+        void sensory_step();
         void update_world();
         void display(int delay) const;
     private:

@@ -41,7 +41,7 @@ bool c_world::spawn_agents(float world_percentage)
     return true;
 }
 
-void c_world::move_agents()
+void c_world::movement_step()
 {
     /* Shuffle agent to avoid emergent patterns due to move sequence */
     /* TODO - this is slow, potential optimization */
@@ -103,6 +103,16 @@ void c_world::move_agents()
             }
         }
     }    
+}
+
+void c_world::sensory_step()
+{
+    /*
+    for(auto &agent : m_agents) 
+    {
+        m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0) = trail_value + agent.m_deposition_value;
+    }
+    */
 }
 
 void c_world::update_world()
