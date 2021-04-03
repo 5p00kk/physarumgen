@@ -55,10 +55,10 @@ void c_world::move_agents()
 
         /* Get grid coordinates */
         /* TODO: paper says they just cast rounding maybe maybe do some interpolation here */
-        int grid_old_x = std::round(agent.m_pose.x);
-        int grid_old_y = std::round(agent.m_pose.y);
-        int grid_new_x = std::round(new_x);
-        int grid_new_y = std::round(new_y);
+        int grid_old_x = to_grid(agent.m_pose.x);
+        int grid_old_y = to_grid(agent.m_pose.y);
+        int grid_new_x = to_grid(new_x);
+        int grid_new_y = to_grid(new_y);
 
         if(grid_new_x == grid_old_x && grid_new_y == grid_old_y)
         {
