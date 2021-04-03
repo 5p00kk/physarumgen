@@ -15,6 +15,7 @@ class c_agent
         s_agent_pose m_pose;
         float m_sensor_angle = 45.0f;
         float m_rotation_angle = 45.0f;
+        float m_step_size = 1.0f;
         unsigned int m_deposition_value = 5;
     private:
 };
