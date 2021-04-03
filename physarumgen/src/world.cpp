@@ -5,6 +5,7 @@ c_world::c_world(unsigned int width, unsigned int height)
 : m_width{width}
 , m_height{height}
 , m_world_grid{height, width, CV_8UC1}
+, m_world_sampler{width, height}
 {}
 
 bool c_world::spawn_agents(float world_percentage)
@@ -25,7 +26,8 @@ bool c_world::spawn_agents(float world_percentage)
     m_agents.reserve(num_agents);
     for(int i=0; i<num_agents; i++)
     {
-        m_agents.emplace_back();
+        s_position tmp_pos = m_world_sampler.get_next_position();
+        m_agents.emplace_back(tmp_pos.x, tmp_pos.y, 0.0);
     }
 
     std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
