@@ -27,9 +27,9 @@ void c_world_sampler::reset_range(unsigned int width, unsigned int height)
     m_current_idx = 0;
 }
 
-s_position c_world_sampler::get_next_position()
+s_vec2 c_world_sampler::get_next_position()
 {
-    s_position ret_val{0,0};
+    s_vec2 ret_val{0,0};
 
     if(m_current_idx >= m_positions.size())
     {
