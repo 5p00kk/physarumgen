@@ -1,6 +1,8 @@
 #include "world.h"
+#include "utils.h"
 #include <iostream>
 #include <algorithm>
+#include <math.h>
 
 c_world::c_world(unsigned int width, unsigned int height)
 : m_width{width}
@@ -43,6 +45,40 @@ void c_world::move_agents()
 {
     /* Shuffle agent to avoid emergent patterns due to move sequence */
     std::random_shuffle(m_agents.begin(), m_agents.end());
+
+    for(auto &agent : m_agents) 
+    {
+        bool can_move = false;
+
+        /* Calculate where the agents wants to go */
+        float next_x = agent.m_pose.x + agent.m_step_size * std::cos(agent.m_pose.alpha*PI/180.0);
+        float next_y = agent.m_pose.y + agent.m_step_size * std::sin(agent.m_pose.alpha*PI/180.0);
+
+        /* Cast it into the grid */
+        int i_next_x = (int)next_x;
+        int i_next_y = (int)next_y;
+
+        /* Check if out of bounds */
+        bool in_bounds = i_next_x >= 0 && i_next_x < m_width;
+        in_bounds &= i_next_y >= 0 && i_next_y < m_height;
+
+        /* Check if space is free */
+        bool space_free = (m_world_grid.at<uchar>(i_next_y, i_next_x, 0) == 0);
+
+        if(in_bounds && space_free)
+        {
+            /* Move */
+            m_world_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = 0;
+            agent.m_pose.x = next_x;
+            agent.m_pose.y = next_y;
+            m_world_grid.at<uchar>((int)agent.m_pose.y, (int)agent.m_pose.x, 0) = 255;
+        }
+        else
+        {
+            /* Dont move but change angle */
+            agent.m_pose.alpha = m_world_sampler.get_angle();
+        }
+    }    
 }
 
 void c_world::update_world()
