@@ -16,5 +16,6 @@ class c_world
         unsigned int m_width;
         unsigned int m_height;
         cv::Mat m_world_grid;
+        cv::Mat m_trail_grid;
         c_world_sampler m_world_sampler;
 };
