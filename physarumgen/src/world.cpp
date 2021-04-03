@@ -112,12 +112,68 @@ void c_world::movement_step()
 
 void c_world::sensory_step()
 {
-    /*
     for(auto &agent : m_agents) 
     {
-        m_trail_grid.at<uchar>(grid_new_y, grid_new_x, 0) = trail_value + agent.m_deposition_value;
+        /* TODO: a lot of this could be done insisde of the agent */
+        /* TODO: split into smaller functions */
+
+        /******************************/
+        /* Calculate sensor positions */
+        /******************************/
+        s_f_vec2 sensor_center = dest_position(agent.m_pose.x, agent.m_pose.y, agent.m_pose.alpha, agent.m_sensor_offset);
+        s_f_vec2 sensor_left   = dest_position(agent.m_pose.x, agent.m_pose.y, agent.m_pose.alpha-agent.m_sensor_angle, agent.m_sensor_offset);
+        s_f_vec2 sensor_right  = dest_position(agent.m_pose.x, agent.m_pose.y, agent.m_pose.alpha+agent.m_sensor_angle, agent.m_sensor_offset);
+
+        
+        /******************************/
+        /* Sample sensor readings     */
+        /******************************/
+        s_ui_vec2 grid_sensor_left{to_grid(sensor_left.x), to_grid(sensor_left.y)};
+        s_ui_vec2 grid_sensor_right{to_grid(sensor_right.x), to_grid(sensor_right.y)};;
+        s_ui_vec2 grid_sensor_center{to_grid(sensor_center.x), to_grid(sensor_center.y)};;
+        uchar reading_left = 0;
+        uchar reading_right = 0;
+        uchar reading_center = 0;
+       
+        if(check_inbounds(grid_sensor_left.x, grid_sensor_left.y))
+        {
+            reading_left = m_trail_grid.at<uchar>(to_grid(sensor_left.y), to_grid(sensor_left.x), 0);
+        }
+        if(check_inbounds(grid_sensor_right.x, grid_sensor_right.y))
+        {
+            reading_right = m_trail_grid.at<uchar>(to_grid(sensor_right.y), to_grid(sensor_right.x), 0);
+        }
+        if(check_inbounds(grid_sensor_center.x, grid_sensor_center.y))
+        {
+            reading_center = m_trail_grid.at<uchar>(to_grid(sensor_center.y), to_grid(sensor_center.x), 0);
+        }
+
+
+        /******************************/
+        /* Adjust agent's direction   */
+        /******************************/
+        if(reading_center > reading_left && reading_center > reading_right)
+        {
+            /* Do nuthin */
+        }
+        else if(reading_center < reading_left && reading_center < reading_right)
+        {
+            int direction = random_bool() ? 1 : -1;
+            agent.m_pose.alpha += direction * agent.m_rotation_angle;
+        }
+        else if(reading_left < reading_right)
+        {
+            agent.m_pose.alpha += agent.m_rotation_angle;
+        }
+        else if(reading_right < reading_left)
+        {
+            agent.m_pose.alpha -= agent.m_rotation_angle;
+        }
+        else
+        {
+            /* Do nuthin */
+        }
     }
-    */
 }
 
 void c_world::update_world()
