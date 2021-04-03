@@ -41,6 +41,6 @@ void c_world::update_world()
     
     for(auto &agent : m_agents) 
     {
-        m_world_grid.at<uchar>(agent.m_position.x, agent.m_position.y, 1) = 255;
+        m_world_grid.at<uchar>(agent.m_position.y, agent.m_position.x, 0) = 255;
     }
 }
