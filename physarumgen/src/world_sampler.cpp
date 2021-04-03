@@ -48,5 +48,5 @@ s_vec2 c_world_sampler::get_next_position()
 
 float c_world_sampler::get_angle()
 {
-    return float(m_dist360(m_rng));
+    return (float)m_dist360(m_rng);
 }
