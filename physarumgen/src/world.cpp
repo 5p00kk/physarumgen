@@ -91,8 +91,9 @@ void c_world::update_world()
     }
 }
 
-void c_world::display() const
+void c_world::display(int delay) const
 {
     cv::imshow("world", m_world_grid);
-    cv::waitKey(100);
+    cv::imshow("trail", m_trail_grid);
+    cv::waitKey(delay);
 }
