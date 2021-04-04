@@ -72,13 +72,13 @@ bool c_world::move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
 }
 
 
-uchar c_world::sense_world(const s_f_vec2 &position) const;
+uchar c_world::sense_world(const s_f_vec2 &position) const
 {
     return sense_world(to_grid(position));
 }
 
 
-uchar c_world::sense_world(const s_ui_vec2 &position) const;
+uchar c_world::sense_world(const s_ui_vec2 &position) const
 {
     uchar ret_val = 0;
 
@@ -91,13 +91,13 @@ uchar c_world::sense_world(const s_ui_vec2 &position) const;
 }
 
 
-void deposit_trail(const s_f_vec2 &position, uchar value);
+void c_world::deposit_trail(const s_f_vec2 &position, uchar value)
 {
     return deposit_trail(to_grid(position), value);
 }
 
 
-void deposit_trail(const s_ui_vec2 &position, uchar value);
+void c_world::deposit_trail(const s_ui_vec2 &position, uchar value)
 {
     if(check_inbounds(position))
     {
@@ -106,7 +106,7 @@ void deposit_trail(const s_ui_vec2 &position, uchar value);
 }
 
 
-bool grid_change(const s_f_vec2 &from, s_f_vec2 &to) const
+bool c_world::grid_change(const s_f_vec2 &from, s_f_vec2 &to) const
 {
     return to_grid(from) != to_grid(to);
 }
@@ -133,7 +133,7 @@ bool c_world::check_cell_empty(const s_ui_vec2 &position) const
 }
 
 
-s_ui_vec2 to_grid(const s_f_vec2 &position) const;
+s_ui_vec2 c_world::to_grid(const s_f_vec2 &position) const
 {
     s_ui_vec2 ret_val;
     ret_val.x = std::round(position.x);
