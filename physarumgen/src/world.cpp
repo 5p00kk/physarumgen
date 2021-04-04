@@ -28,6 +28,12 @@ bool c_world::place_agent(const s_ui_vec2 &position)
 }
 
 
+bool c_world::validate_move(const s_f_vec2 &from, const s_f_vec2 &to) const
+{
+    return validate_move(to_grid(from), to_grid(to));
+}
+
+
 bool c_world::validate_move(const s_ui_vec2 &from, const s_ui_vec2 &to) const
 {
     bool ret_val = false;
@@ -46,7 +52,13 @@ bool c_world::validate_move(const s_ui_vec2 &from, const s_ui_vec2 &to) const
 }
 
 
-bool move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
+bool c_world::move_agent(const s_f_vec2 &from, const s_f_vec2 &to)
+{
+    return move_agent(to_grid(from), to_grid(to));
+}
+
+
+bool c_world::move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
 {
     bool ret_val = false;
 
@@ -60,7 +72,13 @@ bool move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
 }
 
 
-uchar sense_world(const s_ui_vec2 &position) const;
+uchar c_world::sense_world(const s_f_vec2 &position) const;
+{
+    return sense_world(to_grid(position));
+}
+
+
+uchar c_world::sense_world(const s_ui_vec2 &position) const;
 {
     uchar ret_val = 0;
 
@@ -87,7 +105,17 @@ bool c_world::check_inbounds(const s_ui_vec2 &position) const
            (position.y >= 0) && (position.y < m_height)  );
 }
 
+
 bool c_world::check_cell_empty(const s_ui_vec2 &position) const
 {
     return (m_world_grid.at<uchar>(position.y, position.x, 0) == 0);
 }
+
+
+s_ui_vec2 to_grid(const s_f_vec2 &position) const;
+{
+    s_ui_vec2 ret_val;
+    ret_val.x = std::round(position.x);
+    ret_val.y = std::round(position.y);
+    return ret_val;
+};
