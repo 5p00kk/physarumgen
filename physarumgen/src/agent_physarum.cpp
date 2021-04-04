@@ -2,10 +2,9 @@
 #include "utils.h"
 #include <iostream>
 
-c_physarum::c_physarum(float pos_x, float pos_y, float alpha)
-{
-    std::cout << "Called c_physarum constructor" << std::endl;
-}
+c_physarum::c_physarum(float pos_x, float pos_y, float alpha, c_world *world)
+    : i_agent{pos_x, pos_y, alpha, world}
+{}
 
 void c_physarum::print_info() const
 {
