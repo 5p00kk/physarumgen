@@ -44,7 +44,7 @@ void c_physarum::sensing_step()
 }
 
 
-s_f_vec2 c_physarum::calc_destination(s_f_vec2 start_pt, float angle, float distance)
+s_f_vec2 c_physarum::calc_destination(const s_f_vec2 &start_pt, float angle, float distance)
 {
     s_f_vec2 ret_val{start_pt.x + distance * std::cos((angle)*PI/180.0f), 
                      start_pt.y + distance * std::sin((angle)*PI/180.0f)};
