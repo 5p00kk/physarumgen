@@ -3,9 +3,7 @@
 
 c_agent::c_agent(float pos_x, float pos_y, float alpha)
     : m_pose{pos_x, pos_y, alpha}
-{
-    std::cout << "Created c_agent using user values" << std::endl;
-}
+{}
 
 void c_agent::print_info() const
 {
