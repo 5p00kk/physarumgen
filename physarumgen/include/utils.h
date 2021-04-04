@@ -22,4 +22,4 @@ bool operator==(const s_f_vec2& lhs, const s_f_vec2& rhs);
 bool operator!=(const s_f_vec2& lhs, const s_f_vec2& rhs);
 
 bool random_bool();
-bool random_angle();
+float random_angle();
