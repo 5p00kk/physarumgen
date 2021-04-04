@@ -91,6 +91,21 @@ uchar c_world::sense_world(const s_ui_vec2 &position) const;
 }
 
 
+void deposit_trail(const s_f_vec2 &position, uchar value);
+{
+    return deposit_trail(to_grid(position), value);
+}
+
+
+void deposit_trail(const s_ui_vec2 &position, uchar value);
+{
+    if(check_inbounds(position))
+    {
+        m_trail_grid.at<uchar>(position.y, position.x, 0) += value;
+    }
+}
+
+
 void c_world::display(int delay) const
 {
     cv::imshow("world", m_world_grid);

@@ -14,6 +14,8 @@ class c_world
         bool validate_move(const s_ui_vec2 &from, const s_ui_vec2 &to) const;
         uchar sense_world(const s_f_vec2 &position) const;
         uchar sense_world(const s_ui_vec2 &position) const;
+        void deposit_trail(const s_f_vec2 &position, uchar value);
+        void deposit_trail(const s_ui_vec2 &position, uchar value);
         void display(int delay) const;
     private:
         s_ui_vec2 to_grid(const s_f_vec2 &position) const;
