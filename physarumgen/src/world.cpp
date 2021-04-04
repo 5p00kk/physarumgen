@@ -106,6 +106,12 @@ void deposit_trail(const s_ui_vec2 &position, uchar value);
 }
 
 
+bool grid_change(const s_f_vec2 &from, s_f_vec2 &to) const
+{
+    return to_grid(from) != to_grid(to);
+}
+
+
 void c_world::display(int delay) const
 {
     cv::imshow("world", m_world_grid);
