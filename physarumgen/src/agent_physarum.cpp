@@ -9,8 +9,8 @@ c_physarum::c_physarum(float pos_x, float pos_y, float alpha, c_world *world)
 void c_physarum::print_info() const
 {
     std::cout << std::endl << "Printing c_physarum info" << std::endl;
-    std::cout << "x: " << m_pose.x << std::endl;
-    std::cout << "y: " << m_pose.y << std::endl;
+    std::cout << "x: " << m_pose.position.x << std::endl;
+    std::cout << "y: " << m_pose.position.y << std::endl;
     std::cout << "a: " << m_pose.alpha << std::endl << std::endl;
 }
 
@@ -33,7 +33,7 @@ void c_physarum::movement_step()
     }
     else
     {
-        agent.m_pose.alpha = random_angle();
+        m_pose.alpha = random_angle();
     }
 }
 
