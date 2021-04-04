@@ -16,8 +16,4 @@ class c_world_sampler
         unsigned int m_width;
         unsigned int m_height;
         unsigned int m_current_idx;
-        /* Random number generator for direction */
-        std::random_device m_dev;
-        std::mt19937 m_rng;
-        std::uniform_int_distribution<std::mt19937::result_type> m_dist360;
 };

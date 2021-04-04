@@ -6,8 +6,6 @@ c_world_sampler::c_world_sampler(unsigned int width, unsigned int height)
 : m_width{width}
 , m_height{height}
 , m_current_idx{}
-, m_rng{m_dev()}
-, m_dist360{0, 359}
 {
     reset_range(m_width, m_height);
 }
@@ -44,9 +42,4 @@ s_ui_vec2 c_world_sampler::get_next_position()
     }
 
     return ret_val;
-}
-
-float c_world_sampler::get_angle()
-{
-    return (float)m_dist360(m_rng);
 }
