@@ -19,6 +19,6 @@ class c_physarum: public i_agent
         void movement_step() override;
         void sensing_step() override;
     private:
-        s_f_vec2 calc_destination(float x, float y, float angle, float distance);
+        s_f_vec2 calc_destination(const s_f_vec2 &start_pt, float angle, float distance);
         s_physarum_params m_params;
 };
