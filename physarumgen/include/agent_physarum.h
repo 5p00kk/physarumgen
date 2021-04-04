@@ -9,7 +9,7 @@ struct s_physarum_params
     float rotation_angle = 45.0f;
     float step_size = 1.0f;
     unsigned int deposition_value = 5;
-}
+};
 
 class c_physarum: public i_agent
 {
