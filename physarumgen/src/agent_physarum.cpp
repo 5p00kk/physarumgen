@@ -40,7 +40,44 @@ void c_physarum::movement_step()
 
 void c_physarum::sensing_step()
 {
+    /******************************/
+    /* Calculate sensor positions */
+    /******************************/
+    s_f_vec2 sensor_center = calc_destination(m_pose.position, m_pose.alpha,                       m_params.sensor_offset);
+    s_f_vec2 sensor_left   = calc_destination(m_pose.position, m_pose.alpha-m_params.sensor_angle, m_params.sensor_offset);
+    s_f_vec2 sensor_right  = calc_destination(m_pose.position, m_pose.alpha+m_params.sensor_angle, m_params.sensor_offset);
 
+    /******************************/
+    /* Sample sensor readings     */
+    /******************************/
+    uchar reading_left = m_world->sense_world(sensor_left);
+    uchar reading_right = m_world->sense_world(sensor_right);
+    uchar reading_center = m_world->sense_world(sensor_center);
+
+    /******************************/
+    /* Adjust agent's direction   */
+    /******************************/
+    if(reading_center > reading_left && reading_center > reading_right)
+    {
+        /* Do nuthin */
+    }
+    else if(reading_center < reading_left && reading_center < reading_right)
+    {
+        int direction = random_bool() ? 1 : -1;
+        m_pose.alpha += direction * m_params.rotation_angle;
+    }
+    else if(reading_left < reading_right)
+    {
+        m_pose.alpha += m_params.rotation_angle;
+    }
+    else if(reading_right < reading_left)
+    {
+        m_pose.alpha -= m_params.rotation_angle;
+    }
+    else
+    {
+        /* Do nuthin */
+    }
 }
 
 
