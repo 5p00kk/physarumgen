@@ -1,7 +1,8 @@
 find_package(OpenCV REQUIRED)
 
 add_library(physarumgen_lib
-    src/agent.cpp
+    src/agent_interface.cpp
+    src/agent_physarum.cpp
     src/world.cpp
     src/world_sampler.cpp
     src/utils.cpp
