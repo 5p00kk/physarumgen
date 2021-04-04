@@ -3,6 +3,25 @@
 #include <cstdlib>
 #include <random>
 
+bool operator==(const s_ui_vec2& lhs, const s_ui_vec2& rhs)
+{
+    return((lhs.x == rhs.x) && (lhs.y == rhs.y));
+}
+
+bool operator!=(const s_ui_vec2& lhs, const s_ui_vec2& rhs)
+{
+    return((lhs.x != rhs.x) || (lhs.y != rhs.y));
+}
+
+bool operator==(const s_f_vec2& lhs, const s_f_vec2& rhs)
+{
+    return((lhs.x == rhs.x) && (lhs.y == rhs.y));
+}
+
+bool operator!=(const s_f_vec2& lhs, const s_f_vec2& rhs)
+{
+    return((lhs.x != rhs.x) || (lhs.y != rhs.y));
+}
 
 /* FROM: https://stackoverflow.com/a/44045388 */
 bool random_bool()
