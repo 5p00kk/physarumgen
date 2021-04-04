@@ -18,4 +18,4 @@ struct s_f_vec2
 };
 
 bool random_bool();
-s_f_vec2 dest_position(float x, float y, float angle, float distance);
+bool random_angle();

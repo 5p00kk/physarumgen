@@ -9,9 +9,11 @@ bool random_bool()
    return (rand() >> shift) & 1;
 }
 
-s_f_vec2 dest_position(float x, float y, float angle, float distance)
+
+float random_angle()
 {
-    s_f_vec2 ret_val{x + distance * std::cos((angle)*PI/180.0f), 
-                     y + distance * std::sin((angle)*PI/180.0f)};
-    return ret_val;
+    static std::random_device dev;
+    static std::mt19937 rng(m_dev());
+    static std::uniform_int_distribution<std::mt19937::result_type> dist360(0, 359);
+    return (float)m_dist360(rng);
 }
