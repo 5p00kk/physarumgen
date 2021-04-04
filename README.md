@@ -1,6 +1,6 @@
 # physarumgen
 
-C++ Physarum polycephalum slime mold simluation. All processing is currently being done sequential on the CPU.
+C++ Physarum polycephalum slime mold simluation. All processing is currently being done sequentially on the CPU.
 
 Implementation based on the *"Characteristics of pattern formation and evolution in approximations of physarum transport networks"*[1] paper.
 
