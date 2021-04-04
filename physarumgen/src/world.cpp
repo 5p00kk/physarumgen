@@ -100,7 +100,9 @@ void c_world::deposit_trail(const s_f_vec2 &position, uchar value)
 
 void c_world::deposit_trail(const s_ui_vec2 &position, uchar value)
 {
-    if(check_inbounds(position))
+    uchar trail_value = m_trail_grid.at<uchar>(position.y, position.x, 0);
+
+    if(check_inbounds(position) && trail_value <= (255 - value))
     {
         m_trail_grid.at<uchar>(position.y, position.x, 0) += value;
     }
