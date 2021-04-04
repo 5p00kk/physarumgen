@@ -16,7 +16,7 @@ class i_agent
         virtual void print_info() const = 0;
         virtual void movement_step() = 0;
         virtual void sensing_step() = 0;
-    private:
+    protected:
         s_agent_pose m_pose;
         c_world *m_world;
 };
