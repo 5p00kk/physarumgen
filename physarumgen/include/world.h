@@ -1,25 +1,22 @@
 #pragma once
 
-#include "agent.h"
-#include "world_sampler.h"
-#include <vector>
+#include "utils.h"
 #include <opencv2/highgui.hpp>
 
 class c_world
 {
     public:
         c_world(unsigned int width, unsigned int height);
-        bool spawn_agents(float world_percentage);
-        void movement_step();
-        void sensory_step();
-        void update_world();
+        bool place_agent(const s_ui_vec2 &position);
+        bool move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to);
+        bool validate_move(const s_ui_vec2 &from, const s_ui_vec2 &to) const;
+        uchar sense_world(const s_ui_vec2 &position) const;
         void display(int delay) const;
     private:
-        bool check_inbounds(unsigned int x, unsigned int y) const;
-        std::vector<c_agent> m_agents;
-        unsigned int m_width;
-        unsigned int m_height;
+        bool check_inbounds(const s_ui_vec2 &position) const;
+        bool c_world::check_cell_empty(const s_ui_vec2 &position) const;
         cv::Mat m_world_grid;
         cv::Mat m_trail_grid;
-        c_world_sampler m_world_sampler;
+        unsigned int m_width;
+        unsigned int m_height;
 };
