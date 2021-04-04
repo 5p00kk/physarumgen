@@ -64,6 +64,7 @@ bool c_world::move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
 
     if(validate_move(from, to))
     {
+        ret_val = true;
         m_world_grid.at<uchar>(from.y, from.x, 0) = 0;
         m_world_grid.at<uchar>(to.y, to.x, 0) = 255;
     }
