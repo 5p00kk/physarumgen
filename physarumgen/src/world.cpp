@@ -2,10 +2,10 @@
 
 
 c_world::c_world(unsigned int width, unsigned int height)
-: m_width{width}
-, m_height{height}
-, m_world_grid{height, width, CV_8UC1, cv::Scalar(0)}
-, m_trail_grid{height, width, CV_8UC1, cv::Scalar(0)}
+    : m_width{width}
+    , m_height{height}
+    , m_world_grid{height, width, CV_8UC1, cv::Scalar(0)}
+    , m_trail_grid{height, width, CV_8UC1, cv::Scalar(0)}
 {
     cv::namedWindow("world");
     cv::moveWindow("world", 500,300);
