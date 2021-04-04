@@ -21,7 +21,7 @@ class c_world
     private:
         s_ui_vec2 to_grid(const s_f_vec2 &position) const;
         bool check_inbounds(const s_ui_vec2 &position) const;
-        bool c_world::check_cell_empty(const s_ui_vec2 &position) const;
+        bool check_cell_empty(const s_ui_vec2 &position) const;
         cv::Mat m_world_grid;
         cv::Mat m_trail_grid;
         unsigned int m_width;
