@@ -13,8 +13,9 @@ class c_world
             \brief Constructor.
             \param width Width of the world.
             \param height Height of the world.
+            \param diff_size Size of the diffusion kernel.
         */
-        c_world(unsigned int width, unsigned int height);
+        c_world(unsigned int width, unsigned int height, unsigned int diff_size = 3);
         /*!
             \brief Place an agent into the world.
             \param position Coordinates of the cell into which the agent should be placed.
@@ -139,6 +140,7 @@ class c_world
         bool check_cell_empty(const s_ui_vec2 &position) const;
         cv::Mat m_world_grid;
         cv::Mat m_trail_grid;
+        cv::Mat m_diff_kernel;
         unsigned int m_width;
         unsigned int m_height;
 };

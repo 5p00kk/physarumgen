@@ -1,16 +1,20 @@
 #include "world.h"
 #include <opencv2/imgproc.hpp>
 
-c_world::c_world(unsigned int width, unsigned int height)
+c_world::c_world(unsigned int width, unsigned int height, unsigned int diff_size)
     : m_width{width}
     , m_height{height}
     , m_world_grid{height, width, CV_8UC1, cv::Scalar(0)}
     , m_trail_grid{height, width, CV_8UC1, cv::Scalar(0)}
 {
+    /* Create diffusion kernel */
+    m_diff_kernel = cv::Mat::ones(diff_size, diff_size, CV_32F)/(float)(diff_size*diff_size);
+
+    /* Create windows */
     cv::namedWindow("world");
-    cv::moveWindow("world", 500,300);
+    cv::moveWindow("world", 500, 300);
     cv::namedWindow("trail");
-    cv::moveWindow("trail", m_width + 500,300);
+    cv::moveWindow("trail", m_width + 500, 300);
 }
 
 
@@ -117,9 +121,7 @@ bool c_world::same_cell(const s_f_vec2 &from, s_f_vec2 &to) const
 
 void c_world::diffuse()
 {
-    int kernel_size = 3;
-    cv::Mat kernel = cv::Mat::ones(kernel_size, kernel_size, CV_32F)/(float)(kernel_size*kernel_size);
-    cv::filter2D(m_trail_grid, m_trail_grid, -1, kernel, cv::Point(-1,-1));
+    cv::filter2D(m_trail_grid, m_trail_grid, -1, m_diff_kernel, cv::Point(-1,-1));
 }
 
 
