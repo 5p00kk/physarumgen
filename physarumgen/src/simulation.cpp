@@ -81,5 +81,5 @@ void c_simulation::tick()
     m_world.diffuse();
     m_world.decay();
     
-    m_world.display(10);
+    m_world.display(1);
 }
