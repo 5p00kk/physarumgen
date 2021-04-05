@@ -5,7 +5,7 @@ c_world::c_world(unsigned int width, unsigned int height, unsigned int diff_size
     : m_width{width}
     , m_height{height}
     , m_world_grid{height, width, CV_8UC1, cv::Scalar(0)}
-    , m_trail_grid{height, width, CV_8UC1, cv::Scalar(0)}
+    , m_trail_grid{height, width, CV_16UC1, cv::Scalar(0)}
 {
     /* Create diffusion kernel */
     m_diff_kernel = cv::Mat::ones(diff_size, diff_size, CV_32F)/(float)(diff_size*diff_size);
@@ -77,38 +77,38 @@ bool c_world::move_agent(const s_ui_vec2 &from, const s_ui_vec2 &to)
 }
 
 
-uchar c_world::sense_world(const s_f_vec2 &position) const
+unsigned short c_world::sense_world(const s_f_vec2 &position) const
 {
     return sense_world(to_grid(position));
 }
 
 
-uchar c_world::sense_world(const s_ui_vec2 &position) const
+unsigned short c_world::sense_world(const s_ui_vec2 &position) const
 {
-    uchar ret_val = 0;
+    unsigned int ret_val = 0;
 
     if(check_inbounds(position))
     {
-        ret_val = m_trail_grid.at<uchar>(position.y, position.x, 0);
+        ret_val = m_trail_grid.at<unsigned short>(position.y, position.x, 0);
     }
 
     return ret_val;
 }
 
 
-void c_world::deposit_trail(const s_f_vec2 &position, uchar value)
+void c_world::deposit_trail(const s_f_vec2 &position, unsigned short value)
 {
     return deposit_trail(to_grid(position), value);
 }
 
 
-void c_world::deposit_trail(const s_ui_vec2 &position, uchar value)
+void c_world::deposit_trail(const s_ui_vec2 &position, unsigned short value)
 {
-    uchar trail_value = m_trail_grid.at<uchar>(position.y, position.x, 0);
+    unsigned short trail_value = m_trail_grid.at<unsigned short>(position.y, position.x, 0);
 
-    if(check_inbounds(position) && trail_value <= (255 - value))
+    if(check_inbounds(position) && trail_value <= (65535 - value))
     {
-        m_trail_grid.at<uchar>(position.y, position.x, 0) += value;
+        m_trail_grid.at<unsigned short>(position.y, position.x, 0) += value;
     }
 }
 

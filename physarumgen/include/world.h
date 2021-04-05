@@ -72,7 +72,7 @@ class c_world
             \return Trail value at <position>.
             \return 0 if out-of-bounds.
         */
-        uchar sense_world(const s_f_vec2 &position) const;
+        unsigned short sense_world(const s_f_vec2 &position) const;
         /*!
             \brief Read trail map value at <position>.
             Input positions are grid cell coordinates.
@@ -80,21 +80,21 @@ class c_world
             \return Trail value at <position>.
             \return 0 if out-of-bounds.
         */
-        uchar sense_world(const s_ui_vec2 &position) const;
+        unsigned short sense_world(const s_ui_vec2 &position) const;
         /*!
             \brief Deposit <value> in the trail map.
             Input positions are floating point and are caster internally into the grid cell coordinates.
             \param position Coordinates to which the trail deposit should be deposited.
             \param position Coordinates to which the trail deposit should be deposited.
         */
-        void deposit_trail(const s_f_vec2 &position, uchar value);
+        void deposit_trail(const s_f_vec2 &position, unsigned short value);
         /*!
             \brief Deposit <value> in the trail map.
             Input positions are grid cell coordinates.
             \param position Coordinates of the cell to which the trail deposit should be deposited.
             \param position Coordinates of the cell to which the trail deposit should be deposited.
         */
-        void deposit_trail(const s_ui_vec2 &position, uchar value);
+        void deposit_trail(const s_ui_vec2 &position, unsigned short value);
         /*!
             \brief Check if floating point coordinates are casted into the same grid cell.
             \param from Float coordinates 1.

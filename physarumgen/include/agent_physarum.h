@@ -11,7 +11,7 @@ struct s_physarum_params
     float sensor_offset = 9.0f;            /*!< How far from the agent the sensor is located */
     float rotation_angle = 45.0f;          /*!< How much does the agent rotate on orientation change */
     float step_size = 1.0f;                /*!< Agent's forward step size */
-    unsigned int deposition_value = 5;     /*!< How much trail is being depoited at once */
+    unsigned short deposition_value = 5;   /*!< How much trail is being depoited at once */
 };
 
 /*! 
