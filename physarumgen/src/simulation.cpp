@@ -64,5 +64,8 @@ void c_simulation::tick()
         agent->sensing_step();
     }
 
+    m_world.diffuse();
+    m_world.decay();
+    
     m_world.display(10);
 }
