@@ -20,7 +20,7 @@ make
 ## TODO
 
 - [ ] Examples in .MD
-- [ ] Diffusion/decay step to trail map
+- [x] Diffusion/decay step to trail map
 - [ ] GPU implementation
 - [x] Code documentation
 - [ ] Sensor size parameter
