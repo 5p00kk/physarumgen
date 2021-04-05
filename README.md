@@ -5,6 +5,10 @@ C++ Physarum polycephalum slime mold simluation. All processing is currently bei
 Implementation based on the *"Characteristics of pattern formation and evolution in approximations of physarum transport networks"*[1] paper.
 
 ## Examples
+![image info](./examples/physarum_02.jpg)
+
+![image info](./examples/physarum_01.jpg)
+
 
 ## Build
 ```
@@ -19,11 +23,12 @@ make
 
 ## TODO
 
-- [ ] Examples in .MD
+- [x] Examples in .MD
 - [x] Diffusion/decay step to trail map
 - [ ] GPU implementation
 - [x] Code documentation
 - [ ] Sensor size parameter
+- [ ] Add nice interface to record images/videos
 
 
 ## References
