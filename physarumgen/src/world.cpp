@@ -1,5 +1,5 @@
 #include "world.h"
-
+#include <opencv2/imgproc.hpp>
 
 c_world::c_world(unsigned int width, unsigned int height)
     : m_width{width}
