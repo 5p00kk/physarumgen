@@ -28,6 +28,17 @@ class c_simulation
         */
         void spawn_world(unsigned int width, unsigned int height);
         /*!
+            \brief Set diffusion for the current world.
+            \param diff_size Kernel size of diffusion.
+        */
+        void set_world_diffusion(unsigned int diff_size);
+        /*!
+            \brief Set decay for the current world.
+            \param decay_mult Decay multiplication factor.
+            \param decay_sub Decay subtraction factor.
+        */
+        void set_world_decay(float decay_mult, float decay_sub);
+        /*!
             \brief (Re)spawn agents in the world.
             This function removes all old agents and spawns a new group. 
             \param world_percentage Fraction of the world [0-1] that should be populated by agents.

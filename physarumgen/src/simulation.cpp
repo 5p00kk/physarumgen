@@ -11,6 +11,7 @@ c_simulation::c_simulation(unsigned int width, unsigned int height)
 
 }
 
+
 void c_simulation::spawn_world(unsigned int width, unsigned int height)
 {
     /* Clear old world's agents */
@@ -24,6 +25,19 @@ void c_simulation::spawn_world(unsigned int width, unsigned int height)
     /* Reset the sampler */
     m_world_sampler.reset_range(width, height);
 }
+
+
+void c_simulation::set_world_diffusion(unsigned int diff_size)
+{
+    m_world.set_diffusion(diff_size);
+}
+
+
+void c_simulation::set_world_decay(float decay_mult, float decay_sub)
+{
+    m_world.set_decay(decay_mult, decay_sub);
+}
+
 
 bool c_simulation::spawn_agents(float world_percentage)
 {
@@ -61,6 +75,7 @@ bool c_simulation::spawn_agents(float world_percentage)
 
     return ret_val;
 }
+
 
 void c_simulation::tick()
 {
