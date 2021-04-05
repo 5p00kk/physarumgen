@@ -1,4 +1,2 @@
-find_package(OpenCV REQUIRED)
-
 add_executable(physarumgen_demo main.cpp)
 target_link_libraries(physarumgen_demo LINK_PUBLIC physarumgen_lib)
