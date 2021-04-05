@@ -36,3 +36,6 @@
 
 # Build folder
 build/
+
+# Folder with documents
+docs/
