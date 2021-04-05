@@ -22,9 +22,37 @@ struct s_physarum_params
 class c_physarum: public i_agent
 {
     public:
+        /*!
+            \brief Constructor
+            \param pos_x Initial x position of the agent.
+            \param pos_y Initial y position of the agent.
+            \param alpha Initial direction of the agent.
+            \param world Pointer to the c_world object in which the agent is spawned.
+        */
         c_physarum(float pos_x, float pos_y, float alpha, c_world *world);
+
+        /*!
+        \brief Print agent information
+        */
         void print_info() const override;
+
+        /*!
+        \brief Move the agent to the new position.
+
+        The agent attempts to move forward by <step_size>.
+        If the movement is not allowed, the agent will randomly sample new orientation.
+        If the movement is allowed, after moving the agent will deposit <deposition_value> to trail track.
+        */
         void movement_step() override;
+
+        /*!
+        \brief Sense the environment.
+
+        The agent will sense three points around it (left, center, right).
+        The location of sensors is determined by <sensor_angle> and <sensor_offset>.
+        Depending on sensed trail values, the agent will choose new orientation based on <rotation_angle>
+        For more details on new orientation see Jone's paper.
+        */
         void sensing_step() override;
     private:
         /*!
