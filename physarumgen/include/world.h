@@ -13,9 +13,8 @@ class c_world
             \brief Constructor.
             \param width Width of the world.
             \param height Height of the world.
-            \param diff_size Size of the diffusion kernel.
         */
-        c_world(unsigned int width, unsigned int height, unsigned int diff_size = 3);
+        c_world(unsigned int width, unsigned int height);
         /*!
             \brief Place an agent into the world.
             \param position Coordinates of the cell into which the agent should be placed.
@@ -104,11 +103,25 @@ class c_world
         */
         bool same_cell(const s_f_vec2 &from, s_f_vec2 &to) const;
         /*!
+            \brief Set diffusion parameters.
+            \param diff_size Diffustion kernel size.
+        */
+        void set_diffusion(unsigned int diff_size);
+        /*!
             \brief Diffuse the trail map. Apply 3x3 average filter to trail map.
+            \note Applies diffusion only if set_diffusion() was called prior.
         */
         void diffuse();
         /*!
+            \brief Set decay parameters.
+            decayed = (1-<decay_mult>) * prior - <decay_sub>.
+            \param decay_mult Decay multiplication factor.
+            \param decay_sub Decay subtraction factor.
+        */
+        void set_decay(float decay_mult, float decay_sub);
+        /*!
             \brief Decay the trail map.
+            \note Applies decay only if set_decay() was called prior.
         */
         void decay();
         /*!
@@ -141,6 +154,10 @@ class c_world
         cv::Mat m_world_grid;
         cv::Mat m_trail_grid;
         cv::Mat m_diff_kernel;
+        float m_decay_mult;
+        float m_decay_sub;
+        bool m_do_diffusion = false;
+        bool m_do_decay = false;
         unsigned int m_width;
         unsigned int m_height;
 };

@@ -1,15 +1,12 @@
 #include "world.h"
 #include <opencv2/imgproc.hpp>
 
-c_world::c_world(unsigned int width, unsigned int height, unsigned int diff_size)
+c_world::c_world(unsigned int width, unsigned int height)
     : m_width{width}
     , m_height{height}
     , m_world_grid{height, width, CV_8UC1, cv::Scalar(0)}
     , m_trail_grid{height, width, CV_16UC1, cv::Scalar(0)}
 {
-    /* Create diffusion kernel */
-    m_diff_kernel = cv::Mat::ones(diff_size, diff_size, CV_32F)/(float)(diff_size*diff_size);
-
     /* Create windows */
     cv::namedWindow("world");
     cv::moveWindow("world", 500, 300);
@@ -119,9 +116,29 @@ bool c_world::same_cell(const s_f_vec2 &from, s_f_vec2 &to) const
 }
 
 
+void c_world::set_diffusion(unsigned int diff_size)
+{
+    /* Create diffusion kernel */
+    m_diff_kernel = cv::Mat::ones(diff_size, diff_size, CV_32F)/(float)(diff_size*diff_size);
+    m_do_diffusion = true;
+}
+
+
+void c_world::set_decay(float decay_mult, float decay_sub)
+{
+    /* Set decay params */
+    m_decay_mult = decay_mult;
+    m_decay_sub = decay_sub;
+    m_do_decay = true;
+}
+
+
 void c_world::diffuse()
 {
-    cv::filter2D(m_trail_grid, m_trail_grid, -1, m_diff_kernel, cv::Point(-1,-1));
+    if(m_do_diffusion)
+    {
+        cv::filter2D(m_trail_grid, m_trail_grid, -1, m_diff_kernel, cv::Point(-1,-1));
+    }
 }
 
 
