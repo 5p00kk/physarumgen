@@ -11,11 +11,18 @@ c_simulation::c_simulation(unsigned int width, unsigned int height)
 
 }
 
-bool c_simulation::spawn_world(unsigned int m_width, unsigned int m_height)
+void c_simulation::spawn_world(unsigned int width, unsigned int height)
 {
-    /* Spawn new world here */
+    /* Clear old world's agents */
     m_agents.clear();
-    return true;
+
+    /* Create a new empty world */
+    m_world = c_world(width, height);
+    m_width = width;
+    m_height = height;
+
+    /* Reset the sampler */
+    m_world_sampler.reset_range(width, height);
 }
 
 bool c_simulation::spawn_agents(float world_percentage)

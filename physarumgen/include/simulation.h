@@ -10,7 +10,7 @@ class c_simulation
 {
     public:
         c_simulation(unsigned int m_width, unsigned int m_height);
-        bool spawn_world(unsigned int m_width, unsigned int m_height);
+        void spawn_world(unsigned int m_width, unsigned int m_height);
         bool spawn_agents(float world_percentage);
         void tick();
     private:
