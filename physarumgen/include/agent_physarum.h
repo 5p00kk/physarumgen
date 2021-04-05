@@ -30,12 +30,10 @@ class c_physarum: public i_agent
             \param world Pointer to the c_world object in which the agent is spawned.
         */
         c_physarum(float pos_x, float pos_y, float alpha, c_world *world);
-
         /*!
         \brief Print agent information
         */
         void print_info() const override;
-
         /*!
         \brief Move the agent to the new position.
 
@@ -44,7 +42,6 @@ class c_physarum: public i_agent
         If the movement is allowed, after moving the agent will deposit <deposition_value> to trail track.
         */
         void movement_step() override;
-
         /*!
         \brief Sense the environment.
 
@@ -63,7 +60,6 @@ class c_physarum: public i_agent
             \returns 2D end point
         */
         s_f_vec2 calc_destination(const s_f_vec2 &start_pt, float angle, float distance);
-
         /*!
             \brief Physarum agent parameters.
         */
