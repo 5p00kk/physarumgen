@@ -7,6 +7,7 @@ add_library(physarumgen_lib
     src/world.cpp
     src/world_sampler.cpp
     src/utils.cpp
+    src/recorder.cpp
 )
 
 target_include_directories(physarumgen_lib PUBLIC
