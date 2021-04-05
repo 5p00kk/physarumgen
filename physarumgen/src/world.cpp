@@ -109,9 +109,9 @@ void c_world::deposit_trail(const s_ui_vec2 &position, uchar value)
 }
 
 
-bool c_world::grid_change(const s_f_vec2 &from, s_f_vec2 &to) const
+bool c_world::same_cell(const s_f_vec2 &from, s_f_vec2 &to) const
 {
-    return to_grid(from) != to_grid(to);
+    return to_grid(from) == to_grid(to);
 }
 
 

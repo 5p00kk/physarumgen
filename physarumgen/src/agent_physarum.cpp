@@ -20,7 +20,7 @@ void c_physarum::movement_step()
     /* Calculate where the agent wants to go */
     s_f_vec2 desitnation = calc_destination(m_pose.position, m_pose.alpha, m_params.step_size);
     
-    if(!m_world->grid_change(m_pose.position, desitnation))
+    if(m_world->same_cell(m_pose.position, desitnation))
     {
         m_pose.position.x = desitnation.x;
         m_pose.position.y = desitnation.y;

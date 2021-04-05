@@ -16,7 +16,7 @@ class c_world
         uchar sense_world(const s_ui_vec2 &position) const;
         void deposit_trail(const s_f_vec2 &position, uchar value);
         void deposit_trail(const s_ui_vec2 &position, uchar value);
-        bool grid_change(const s_f_vec2 &from, s_f_vec2 &to) const;
+        bool same_cell(const s_f_vec2 &from, s_f_vec2 &to) const;
         void diffuse();
         void decay();
         void display(int delay) const;
