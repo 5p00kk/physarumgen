@@ -14,7 +14,6 @@ struct s_agent_pose
 
 /*! 
     \brief Abstract class for agents.
-
     The interface requires implemnentations to provide methods for agent's
     movement and sensing.
 */
@@ -30,15 +29,15 @@ class i_agent
         */
         i_agent(float pos_x, float pos_y, float alpha, c_world *world);
         /*!
-        \brief Print agent information
+            \brief Print agent information
         */
         virtual void print_info() const = 0;
         /*!
-        \brief Move the agent to the new position.
+            \brief Move the agent to the new position.
         */
         virtual void movement_step() = 0;
         /*!
-        \brief Sense the world.
+            \brief Sense the world.
         */
         virtual void sensing_step() = 0;
     protected:
