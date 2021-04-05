@@ -27,6 +27,8 @@ void c_simulation::spawn_world(unsigned int width, unsigned int height)
 
 bool c_simulation::spawn_agents(float world_percentage)
 {
+    bool ret_val = true;
+
     /* Calculate how many agents are requested */
     unsigned int world_area = m_width * m_height;
     unsigned int num_agents = (unsigned int)(world_percentage * world_area);
@@ -51,12 +53,13 @@ bool c_simulation::spawn_agents(float world_percentage)
         else
         {
             std::cout << "<c_world::spawn_agents>: Invalid spawn position" << std::endl;
+            ret_val = false;
         }
     }
 
     std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
 
-    return true;
+    return ret_val;
 }
 
 void c_simulation::tick()
