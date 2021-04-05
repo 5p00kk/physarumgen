@@ -144,7 +144,12 @@ void c_world::diffuse()
 
 void c_world::decay()
 {
-
+    if(m_do_decay)
+    {
+        /* TODO not sure if decay should be by multiplication or subtraction */
+        /* TODO for optimization it might be worth to do mult only and combine it with diffuse */
+        m_trail_grid = (1.0f-m_decay_mult)*m_trail_grid - m_decay_sub;
+    }
 }
 
 
