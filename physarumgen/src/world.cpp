@@ -155,8 +155,13 @@ void c_world::decay()
 
 void c_world::display(int delay) const
 {
+    /* Normalize trail for display */
+    cv::Mat normalized;
+    cv::normalize(m_trail_grid, normalized, 0, 65535, cv::NORM_MINMAX, CV_16UC1);
+    
+    /* Show iamges */
     cv::imshow("world", m_world_grid);
-    cv::imshow("trail", m_trail_grid);
+    cv::imshow("trail", normalized);
     cv::waitKey(delay);
 }
 
