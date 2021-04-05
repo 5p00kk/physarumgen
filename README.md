@@ -26,6 +26,7 @@ make
 - [x] Code documentation
 - [ ] Sensor size parameter
 - [ ] Add nice interface to record images/videos
+- [ ] Add interface for setting parameters of agent from outside
 
 
 ## References
