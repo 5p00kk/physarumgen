@@ -71,6 +71,10 @@ void c_simulation::tick()
     for(auto &agent : m_agents) 
     {
         agent->movement_step();
+    }
+
+    for(auto &agent : m_agents) 
+    {
         agent->sensing_step();
     }
 
