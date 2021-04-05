@@ -5,10 +5,7 @@ C++ Physarum polycephalum slime mold simluation. All processing is currently bei
 Implementation based on the *"Characteristics of pattern formation and evolution in approximations of physarum transport networks"*[1] paper.
 
 ## Examples
-![image info](./examples/physarum_02.jpg)
-
 ![image info](./examples/physarum_01.jpg)
-
 
 ## Build
 ```
