@@ -115,6 +115,20 @@ bool c_world::grid_change(const s_f_vec2 &from, s_f_vec2 &to) const
 }
 
 
+void c_world::diffuse()
+{
+    int kernel_size = 3;
+    cv::Mat kernel = cv::Mat::ones(kernel_size, kernel_size, CV_32F)/(float)(kernel_size*kernel_size);
+    cv::filter2D(m_trail_grid, m_trail_grid, -1, kernel, cv::Point(-1,-1));
+}
+
+
+void c_world::decay()
+{
+
+}
+
+
 void c_world::display(int delay) const
 {
     cv::imshow("world", m_world_grid);
