@@ -82,7 +82,7 @@ bool c_simulation::spawn_agents(float world_percentage)
 
 void c_simulation::start_recording(const std::string &path)
 {
-    m_recorder.new_recording(m_width, m_height, path);
+    m_recorder.new_recording(2*m_width, m_height, path);
 }
 
 
