@@ -13,9 +13,9 @@ class c_recorder
         void stop_recording();
         void video_add_frame(const cv::Mat &frame);
         void save_image(const cv::Mat &frame);
+        bool m_recording = false;
     private:
         cv::VideoWriter m_video_writer;
         std::string m_path;
         unsigned int m_frame_number = 0;
-        bool m_recording = false;
 };
