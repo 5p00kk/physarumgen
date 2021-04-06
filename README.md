@@ -7,6 +7,8 @@ Implementation based on the *"Characteristics of pattern formation and evolution
 ## Examples
 ![image info](./examples/physarum_01.jpg)
 
+![image info](./examples/physarum_02.jpg)
+
 ## Build
 ```
 mkdir build && cd build
