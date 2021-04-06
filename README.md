@@ -18,16 +18,19 @@ make
 ## Dependencies
 1. OpenCV
 
-## TODO
+## TODO/Ideas
 
 - [x] Examples in .MD
 - [x] Diffusion/decay step to trail map
 - [ ] GPU implementation
 - [x] Code documentation
-- [ ] Sensor size parameter
-- [ ] Add nice interface to record images/videos
+- [ ] Add sensor size parameter from the paper
+- [x] Add nice interface to record images/videos
 - [ ] Add interface for setting parameters of agent from outside
-
+- [ ] Different spawning methods
+- [ ] Interactive reaction to mouse position
+- [ ] Multiple agent types in the same simulation
+- [ ] Colours
 
 ## References
 1.  https://uwe-repository.worktribe.com/output/980579?fbclid=IwAR0l3mB_Vo5Vd_HDTf4qGF1ka2Q0k3d-LEJ-Mpyl632yMcwD_DJ6q-N6zKc
