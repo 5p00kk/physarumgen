@@ -9,12 +9,17 @@ c_recorder::c_recorder()
 
 c_recorder::c_recorder(unsigned int width, unsigned int height, const std::string &path)
     : m_path{path}
-    , m_video_writer{(path+"physarum.mp4"), cv::VideoWriter::fourcc('A', 'V', 'C', '1'), 30, cv::Size(height, width), false}
-{}
+{
+    new_recording(width, height, path);
+}
 
-void c_recorder::new_recording(unsigned int width, unsigned int height, const std::string &path)
+bool c_recorder::new_recording(unsigned int width, unsigned int height, const std::string &path)
 {
     m_path = path;
+    m_frame_number = 0;
+    m_recording = m_video_writer.open((path+"physarum.mp4"), cv::VideoWriter::fourcc('A', 'V', 'C', '1'), 30, cv::Size(height, width), false);
+    return m_recording;
+}
 
 void c_recorder::stop_recording()
 {
