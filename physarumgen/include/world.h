@@ -132,7 +132,7 @@ class c_world
         /*
             TODO document 
         */
-        void get_world_snap(cv::Mat &snap_out) const;
+        cv::Mat get_world_snap() const;
     private:
         /*!
             \brief Cast float position into grid map coordinates
