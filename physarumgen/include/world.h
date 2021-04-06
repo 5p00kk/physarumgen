@@ -129,6 +129,10 @@ class c_world
             \param delay Window delay (see OpenCV implementation).
         */
         void display(int delay) const;
+        /*
+            TODO document 
+        */
+        void get_world_snap(cv::Mat &snap_out) const;
     private:
         /*!
             \brief Cast float position into grid map coordinates

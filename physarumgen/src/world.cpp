@@ -166,6 +166,21 @@ void c_world::display(int delay) const
 }
 
 
+void c_world::get_world_snap(cv::Mat &snap_out) const
+{
+    /* Tmp Mat */
+    cv::Mat normalized_trail;
+
+    /* Normalize for nice colour distribution */
+    cv::normalize(m_trail_grid, normalized_trail, 0, 65535, cv::NORM_MINMAX, CV_16UC1);
+    /* Convert to 8 bit to concatinate with world cell map */
+    normalized_trail.convertTo(normalized_trail, CV_8UC1, 1/255);
+
+    /* Concatinate into output cv::Mat*/
+    cv::hconcat(m_world_grid, normalized_trail, snap_out);
+}
+
+
 bool c_world::check_inbounds(const s_ui_vec2 &position) const
 {
     return((position.x >= 0) && (position.x < m_width) && 
