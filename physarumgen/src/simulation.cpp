@@ -122,4 +122,6 @@ void c_simulation::tick()
             m_recorder.save_image(m_world.get_world_snap());
         }
     }
+
+    simulation_tick++;
 }
