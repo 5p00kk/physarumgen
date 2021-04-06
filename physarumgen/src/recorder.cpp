@@ -29,12 +29,18 @@ void c_recorder::stop_recording()
 
 void c_recorder::video_add_frame(const cv::Mat &frame)
 {
-    m_video_writer.write(frame);
+    if(m_recording)
+    {
+        m_video_writer.write(frame);
+    }
 }
 
 void c_recorder::save_image(const cv::Mat &frame)
 {
-    std::string image_path = m_path + "physarum_" + std::to_string(m_frame_number) + ".jpg";
-    cv::imwrite(image_path, frame);
-    m_frame_number++;
+    if(m_recording)
+    {
+        std::string image_path = m_path + "physarum_" + std::to_string(m_frame_number) + ".jpg";
+        cv::imwrite(image_path, frame);
+        m_frame_number++;
+    }
 }
