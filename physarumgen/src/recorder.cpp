@@ -1,4 +1,5 @@
 /* TODO fix all these paths etc */
+/* TODO deal with exceptions / failures */
 
 #include "recorder.h"
 #include <opencv2/imgcodecs.hpp>
