@@ -15,7 +15,11 @@ c_recorder::c_recorder(unsigned int width, unsigned int height, const std::strin
 void c_recorder::new_recording(unsigned int width, unsigned int height, const std::string &path)
 {
     m_path = path;
-    m_video_writer.open((path+"physarum.mp4"), cv::VideoWriter::fourcc('A', 'V', 'C', '1'), 30, cv::Size(height, width), false);
+
+void c_recorder::stop_recording()
+{
+    m_video_writer.release();
+    m_recording = false;
 }
 
 void c_recorder::video_add_frame(const cv::Mat &frame)
