@@ -88,6 +88,8 @@ void c_simulation::start_recording(const std::string &path)
 
 void c_simulation::tick()
 {
+    static unsigned int simulation_tick = 0;
+
     /* Shuffle agent to avoid emergent patterns due to move sequence */
     /* TODO - this seems slow, potential optimization */
     std::random_shuffle(m_agents.begin(), m_agents.end());
@@ -102,8 +104,22 @@ void c_simulation::tick()
         agent->sensing_step();
     }
 
+    /* Update world */
     m_world.diffuse();
     m_world.decay();
     
+    /* DIsplay world */
     m_world.display(1);
+
+    /* If simulation recording is running, add frames */
+    if(m_recorder.m_recording)
+    {
+        /* Add frame to video */
+        m_recorder.video_add_frame(m_world.get_world_snap());
+        /* Save every 100th image */
+        if(simulation_tick%100 == 0)
+        {
+            m_recorder.save_image(m_world.get_world_snap());
+        }
+    }
 }
