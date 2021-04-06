@@ -17,7 +17,7 @@ bool c_recorder::new_recording(unsigned int width, unsigned int height, const st
 {
     m_path = path;
     m_frame_number = 0;
-    m_recording = m_video_writer.open((path+"physarum.mp4"), cv::VideoWriter::fourcc('A', 'V', 'C', '1'), 30, cv::Size(height, width), false);
+    m_recording = m_video_writer.open((path+"physarum.mp4"), cv::VideoWriter::fourcc('a', 'v', 'c', '1'), 30, cv::Size(height, width), false);
     return m_recording;
 }
 
