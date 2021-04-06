@@ -4,6 +4,7 @@
 #include "agent_interface.h"
 #include "world_sampler.h"
 #include "world.h"
+#include "recorder.h"
 #include <vector>
 
 /*! 
@@ -55,10 +56,16 @@ class c_simulation
             decay the world.
         */
         void tick();
+        /*!
+            \brief Start video/image recording of the current simultation (frames are added on tick)
+            \param path Recording path
+        */  
+        void start_recording(const std::string &path);
     private:
         std::vector<std::unique_ptr<i_agent>> m_agents;    /*!< Vector containing pointers to all agents in the simulation. */
         c_world m_world;                                   /*!< The current world. */
         c_world_sampler m_world_sampler;                   /*!< Object for sampling cells from the current world. */
+        c_recorder m_recorder;                             /*!< Object for recording world snapshots. */
         unsigned int m_width = 0;                          /*!< Current world width */
         unsigned int m_height = 0;                         /*!< Current world height */
 };

@@ -14,6 +14,9 @@ c_simulation::c_simulation(unsigned int width, unsigned int height)
 
 void c_simulation::spawn_world(unsigned int width, unsigned int height)
 {
+    /* Stop recording as image size might change */
+    m_recorder.stop_recording();
+
     /* Clear old world's agents */
     m_agents.clear();
 
@@ -74,6 +77,12 @@ bool c_simulation::spawn_agents(float world_percentage)
     std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
 
     return ret_val;
+}
+
+
+void c_simulation::start_recording(const std::string &path)
+{
+    m_recorder.new_recording(m_width, m_height, path);
 }
 
 
