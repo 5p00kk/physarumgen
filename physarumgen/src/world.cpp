@@ -175,7 +175,7 @@ cv::Mat c_world::get_world_snap() const
     /* Normalize for nice colour distribution */
     cv::normalize(m_trail_grid, normalized_trail, 0, 65535, cv::NORM_MINMAX, CV_16UC1);
     /* Convert to 8 bit to concatinate with world cell map */
-    normalized_trail.convertTo(normalized_trail, CV_8UC1, 1/255);
+    normalized_trail.convertTo(normalized_trail, CV_8UC1, 1.0f/255.0f);
 
     /* Concatinate into output cv::Mat*/
     cv::hconcat(m_world_grid, normalized_trail, snap_out);
