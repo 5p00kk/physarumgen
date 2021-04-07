@@ -50,6 +50,15 @@ class c_simulation
         */
         bool spawn_agents_unfirom(float world_percentage);
         /*!
+            \brief (Re)spawn agents in the world.
+            This function removes all old agents and spawns a new group. 
+            Agents are spawned in a centrally placed square.
+            \param square_side Size of the spawn square.
+            \return True if agents were spawned succesfully
+            \return False if side was larger than world size
+        */
+        bool spawn_agents_square(unsigned int side);
+        /*!
             \brief Progress the world time.
             Movement step for all agents, 
             sensing step for all agents, 

@@ -81,6 +81,41 @@ bool c_simulation::spawn_agents_unfirom(float world_percentage)
 }
 
 
+bool c_simulation::spawn_agents_square(unsigned int square_side)
+{
+    /* Check if the square can fit into the world */
+    if(square_side > m_width || square_side > m_height)
+    {
+        std::cout << "<c_world::spawn_agents>: Could not spawn agents" << std::endl;
+        return false;
+    }
+
+    bool ret_val = true;
+    s_ui_vec2 spawn_corner = {(m_width-square_side)/2, (m_height-square_side)/2};
+    unsigned int num_agents = square_side*square_side;
+
+    /* (Re)spawn agents */
+    m_agents.clear();
+    m_agents.reserve(num_agents);
+    for(int i=0; i<num_agents; i++)
+    {
+        s_ui_vec2 tmp_pos = {(spawn_corner.x + i%square_side), (spawn_corner.y + i/square_side)};
+        if(m_world.place_agent(tmp_pos))
+        {
+            m_agents.emplace_back(std::make_unique<c_physarum>((float)tmp_pos.x, (float)tmp_pos.y, random_angle(), &m_world));
+        }
+        else
+        {
+            std::cout << "<c_world::spawn_agents>: Invalid spawn position" << std::endl;
+            ret_val = false;
+        }
+    }
+
+    std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
+
+    return ret_val;
+}
+
 void c_simulation::start_recording(const std::string &path)
 {
     m_recorder.new_recording(2*m_width, m_height, path);
