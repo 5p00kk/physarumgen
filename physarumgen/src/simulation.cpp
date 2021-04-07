@@ -43,7 +43,7 @@ void c_simulation::set_world_decay(float decay_mult, float decay_sub)
 }
 
 
-bool c_simulation::spawn_agents(float world_percentage)
+bool c_simulation::spawn_agents_unfirom(float world_percentage)
 {
     bool ret_val = true;
 

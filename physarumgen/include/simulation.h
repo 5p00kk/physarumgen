@@ -42,12 +42,13 @@ class c_simulation
         /*!
             \brief (Re)spawn agents in the world.
             This function removes all old agents and spawns a new group. 
+            Agents are randomly sampled from the world grid map.
             \param world_percentage Fraction of the world [0-1] that should be populated by agents.
             \return True if agents were spawned succesfully
             \return False if too many agents were requested
             \return False if there was an attempt to spawn an agent on occupied cell
         */
-        bool spawn_agents(float world_percentage);
+        bool spawn_agents_unfirom(float world_percentage);
         /*!
             \brief Progress the world time.
             Movement step for all agents, 
