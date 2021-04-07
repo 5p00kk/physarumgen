@@ -24,6 +24,7 @@ void c_simulation::spawn_world(unsigned int width, unsigned int height)
     m_world = c_world(width, height);
     m_width = width;
     m_height = height;
+    m_ticks = 0;
 
     /* Reset the sampler */
     m_world_sampler.reset_range(width, height);
@@ -116,12 +117,13 @@ void c_simulation::tick()
     {
         /* Add frame to video */
         m_recorder.video_add_frame(m_world.get_world_snap());
+
         /* Save every 100th image */
-        if(simulation_tick%100 == 0)
+        if(m_ticks%100 == 0)
         {
             m_recorder.save_image(m_world.get_world_snap());
         }
     }
 
-    simulation_tick++;
+    m_ticks++;
 }

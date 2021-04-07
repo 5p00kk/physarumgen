@@ -66,6 +66,7 @@ class c_simulation
         c_world m_world;                                   /*!< The current world. */
         c_world_sampler m_world_sampler;                   /*!< Object for sampling cells from the current world. */
         c_recorder m_recorder;                             /*!< Object for recording world snapshots. */
+        unsigned int m_ticks = 0;                          /*!< Current simulation tick. */
         unsigned int m_width = 0;                          /*!< Current world width */
         unsigned int m_height = 0;                         /*!< Current world height */
 };
