@@ -1,3 +1,5 @@
+/* TODO better solution for different spawners */
+
 #include "simulation.h"
 #include "utils.h"
 #include <iostream>
