@@ -124,8 +124,6 @@ void c_simulation::start_recording(const std::string &path)
 
 void c_simulation::tick()
 {
-    static unsigned int simulation_tick = 0;
-
     /* Shuffle agent to avoid emergent patterns due to move sequence */
     /* TODO - this seems slow, potential optimization */
     std::random_shuffle(m_agents.begin(), m_agents.end());
