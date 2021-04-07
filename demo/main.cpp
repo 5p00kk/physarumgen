@@ -13,7 +13,7 @@ int main()
 
     /* Prepare simulation */
     c_simulation simulation(world_width, world_height);
-    simulation.spawn_agents(population);
+    simulation.spawn_agents_uniform(population);
     simulation.set_world_decay(decay_mult, decay_sub);
     simulation.set_world_diffusion(diff_size);
 
