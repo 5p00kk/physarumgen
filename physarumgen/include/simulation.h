@@ -48,7 +48,7 @@ class c_simulation
             \return False if too many agents were requested
             \return False if there was an attempt to spawn an agent on occupied cell
         */
-        bool spawn_agents_unfirom(float world_percentage);
+        bool spawn_agents_uniform(float world_percentage);
         /*!
             \brief (Re)spawn agents in the world.
             This function removes all old agents and spawns a new group. 
