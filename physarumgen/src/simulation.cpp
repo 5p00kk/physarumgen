@@ -118,6 +118,48 @@ bool c_simulation::spawn_agents_square(unsigned int square_side)
     return ret_val;
 }
 
+
+bool c_simulation::spawn_agents_circle(unsigned int circle_radius)
+{
+    /* Check if the square can fit into the world */
+    if(2*circle_radius > m_width || 2*circle_radius > m_height)
+    {
+        std::cout << "<c_world::spawn_agents>: Could not spawn agents" << std::endl;
+        return false;
+    }
+
+    bool ret_val = true;
+    /* (Re)spawn agents */
+    m_agents.clear();
+    /* For now reserve more than needed */
+    m_agents.reserve(4*circle_radius*circle_radius);
+
+    /* Go through square and find points inside of the circle */
+    for(int i=-1*(int)circle_radius; i<(int)circle_radius; i++)
+    {
+        for(int j=-1*(int)circle_radius; j<(int)circle_radius; j++)
+        {
+            if((int)sqrt((i*i)+(j*j))<=circle_radius)
+            {
+                /* Point is inside of the spawn circle */
+                /* Add the agent */
+                s_ui_vec2 tmp_pos = {(i+(int)m_width/2), (j+(int)m_height/2)};
+                if(m_world.place_agent(tmp_pos))
+                {
+                    m_agents.emplace_back(std::make_unique<c_physarum>((float)tmp_pos.x, (float)tmp_pos.y, random_angle(), &m_world));
+                }
+                else
+                {
+                    std::cout << "<c_world::spawn_agents>: Invalid spawn position" << std::endl;
+                    ret_val = false;
+                }
+            }
+        }
+    }
+    std::cout << "Spawned " << m_agents.size() << " agents" << std::endl;
+    return ret_val;
+}
+
 void c_simulation::start_recording(const std::string &path)
 {
     m_recorder.new_recording(2*m_width, m_height, path);

@@ -59,6 +59,15 @@ class c_simulation
         */
         bool spawn_agents_square(unsigned int side);
         /*!
+            \brief (Re)spawn agents in the world.
+            This function removes all old agents and spawns a new group. 
+            Agents are spawned in a centrally placed circle.
+            \param circle_radius Radius of the spawn circle.
+            \return True if agents were spawned succesfully
+            \return False if circle was larger than world size.
+        */
+        bool spawn_agents_circle(unsigned int circle_radius);
+        /*!
             \brief Progress the world time.
             Movement step for all agents, 
             sensing step for all agents, 
