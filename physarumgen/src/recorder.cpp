@@ -39,7 +39,7 @@ void c_recorder::save_image(const cv::Mat &frame)
 {
     if(m_recording)
     {
-        std::string image_path = m_path + "physarum_" + std::to_string(m_frame_number) + ".jpg";
+        std::string image_path = m_path + "physarum_" + std::to_string(m_frame_number) + ".png";
         cv::imwrite(image_path, frame);
         m_frame_number++;
     }
